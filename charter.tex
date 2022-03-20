@@ -70,7 +70,7 @@ codirector, % Uncomment to add a codirector to the title page
 		Revisión & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Detalles de los cambios realizados} & Fecha            \\ \hline
 		0        & Creación del documento                                                          & \fechaInicioName \\ \hline
 		1        & Se completa hasta el punto 5 inclusive                                          & 13/03/2022       \\ \hline
-		%2      & Se completa hasta el punto 7 inclusive
+		2        & Se completa hasta el punto 9 inclusive                                          & 20/03/2022       \\ \hline
 		%		  Se puede agregar algo más \newline
 		%		  En distintas líneas \newline
 		%		  Así                                                    & dd/mm/aaaa \\ \hline
@@ -92,7 +92,7 @@ codirector, % Uncomment to add a codirector to the title page
 
 \vspace{2cm}
 
-Por medio de la presente se acuerda con el Ing. \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'', consistirá esencialmente en la implementación del firmware sobre la placa de comunicaciones del Power Train, y tendrá un presupuesto preliminar estimado de 1700 hs de trabajo y 900000, con fecha de inicio \fechaInicioName\hspace{1px} y fecha de presentación pública \fechaFinalName.
+Por medio de la presente se acuerda con el Ing. \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'', consistirá esencialmente en la implementación del firmware sobre la placa de comunicaciones de un Tren Motor, y tendrá un presupuesto preliminar estimado de 1700 hs de trabajo y \$900000, con fecha de inicio \fechaInicioName\hspace{1px} y fecha de presentación pública \fechaFinalName.
 
 Se adjunta a esta acta la planificación inicial.
 
@@ -116,24 +116,36 @@ Se adjunta a esta acta la planificación inicial.
 \label{sec:descripcion}
 
 
-Un Power Train es un sistema de transmisión de energía eléctrica que se utiliza en los vehículos. Este consta de un pack de baterías, una unidad de control y el motor. La unidad de control de Voltu Motors utiliza dos placas microcontroladas para resolver el Hardware.
+Un Power Train o Tren Motor es el sistema encargado de impulsar los vehículos eléctricos. Estos convierten la energía eléctrica almacenada en baterías a motriz alimentando un motor eléctrico.
+
+El Power Train es uno de los dos productos principales que desarrolla y comercializa la empresa Voltu Motors. Este Tren Motor puede adaptarse a diferentes tipos de vehículos, actualmente se han instalado en motos, cuatriciclos, colectivos y camiones.
+
+El dispositivo consta de un pack de baterías, una unidad de control, el motor. La unidad de control de Voltu Motors utiliza dos placas microcontroladas para resolver el Hardware.
 La primera de ellas es un DSP que realiza el control para mover el motor y cargar las baterías . La segunda es la placa de comunicaciones que cumple la función de interactuar con el exterior de la unidad de control.
-Esta placa de comunicaciones posee
+
+El usuario del vehículo puede controlar el Tren Motor mediante una interfaz gráfica, la cual se encuentra en el tablero del vehículo. Éste tablero es una tablet que se comunica con la unidad de control mediante protocolo USB.
+
+La placa de comunicaciones posee
 
 \begin{itemize}
 	\item Entradas y salidas digitales para el manejo de periféricos como luces, ventiladores, etc.
-	\item Comunicación USB para comunicarse con la tablet del usuario.
-	\item Comunicación UART para comunicarse con la placa de control, una con fines de debug y otra para comunicarse con el BMS (Batery Management System).
-	\item Posee una interfaz para gestionar el conexionado de un EVSE (Electric Vehicle Supply Equipment).
+	\item Interfaz USB para comunicarse con la tablet del usuario.
+	\item Interfaz UART para comunicarse con la placa de control, una con fines de debug y otra para comunicarse con el BMS (\textit{Batery Management System}).
+	\item Interfaz para gestionar el conexionado de un EVSE (\textit{Electric Vehicle Supply Equipment}).
 \end{itemize}
 
-Estas características convierten a la placa de comunicaciones en la encargada de gestionar el estado de la unidad de control. Esta utiliza la información que recibe de todas sus interfaces para la toma de decisiones.
+Las características listadas anteriormente convierten a la placa de comunicaciones en la encargada de gestionar el estado de la unidad de control. Esta utiliza la información que recibe de todas sus interfaces para la toma de decisiones.
 
-El Power Train es uno de los dos productos principales que desarrolla y comercializa la empresa Voltu Motors. Actualmente existe una versión funcional con un Hardware distinto en donde la placa de control gestiona gran parte de las tareas que se proponen para la nueva placa de comunicaciones.
+Actualmente, existe una versión funcional con un Hardware distinto en donde la placa de control gestiona gran parte de las tareas que se proponen para la nueva placa de comunicaciones.
 
-La nueva implementación permite reducir las tareas del DSP a los algoritmos de control del motor y la carga, mejorando así la seguridad del sistema. Además, esta configuración incorpora nuevas características, como el manejo de distintos tipos de EVSE y la posibilidad de definir fuera de tiempo de compilación características del Power Train que se adapten a distintos tipos de vehículos.
+La nueva implementación permitirá reducir las tareas del DSP a los algoritmos de control del motor y la carga, y mejora así la seguridad del sistema. Además, esta configuración incorpora nuevas características, como el manejo de distintos tipos de EVSE y la posibilidad de definir fuera de tiempo de compilación características del Power Train que se adapten a distintos tipos de vehículos.
 
 %\vspace{25px}
+
+
+En la Figura \ref{fig:diagBloques} se presenta el diagrama en bloques del sistema. Se puede observar como la placa de comunicaciones interactúa con la Tablet, el DSP y el BMS, mientras que la placa de control se encarga de controlar el flujo de energía para la carga de la batería o marcha del motor. Adicionalmente la placa de comunicaciones gestiona las entradas y salidas con los periféricos del vehículo.
+
+Debido a que la nueva versión del Power Train está planificada con este Hardware, el desarrollo de este proyecto es fundamental para su lanzamiento.
 
 \begin{figure}[htpb]
 	\centering
@@ -143,10 +155,6 @@ La nueva implementación permite reducir las tareas del DSP a los algoritmos de 
 \end{figure}
 
 \vspace{25px}
-
-En la Figura \ref{fig:diagBloques} se presenta el diagrama en bloques del sistema. Se puede observar como la placa de comunicaciones interactúa con la Tablet, el DSP y el BMS, mientras que la placa de control se encarga de controlar el flujo de energía para la carga de la batería o marcha del motor. Adicionalmente la placa de comunicaciones gestiona las entradas y salidas con los periféricos del vehículo.
-
-Debido a que la nueva versión del Power Train esta proyectado con este Hardware, el desarrollo de este proyecto es fundamental para su lanzamiento.
 
 \section{2. Identificación y análisis de los interesados}
 \label{sec:interesados}
@@ -162,10 +170,7 @@ Debido a que la nueva versión del Power Train esta proyectado con este Hardware
 		Cliente       & \clientename      & \empclientename & CEO y Fundador              \\ \hline
 		Impulsor      & Luciano Vittori   & \empclientename & Lider de Control y Firmware \\ \hline
 		Responsable   & \authorname       & FIUBA           & Alumno                      \\ \hline
-		Colaboradores & -                 & -               & -                           \\ \hline
 		Orientador    & \supname          & \pertesupname   & Director Trabajo final      \\ \hline
-		Equipo        & -                 & -               & -                           \\ \hline
-		Opositores    & -                 & -               & -                           \\ \hline
 		Usuario final & -                 & -               & -                           \\ \hline
 	\end{tabularx}
 \end{table}
@@ -177,141 +182,256 @@ Debido a que la nueva versión del Power Train esta proyectado con este Hardware
 \section{3. Propósito del proyecto}
 \label{sec:proposito}
 
-El propósito de este proyecto es desarrollar el Firmware de la nueva placa de comunicaciones cubriendo las características de la versión anterior y agregando el manejo del BMS, EVSE y periféricos.
+El propósito de este proyecto es desarrollar el firmware de la nueva placa de comunicaciones. Éste firmware debe cubrir las características de la versión anterior y ademas contemplar el manejo del BMS, EVSE y periféricos.
 La nueva versión también será la encargada de realizar el control de temperatura del sistema.
 
 \section{4. Alcance del proyecto}
 \label{sec:alcance}
 
-En el presente proyecto se diseñara, desarrollará e implementará el firmware de la placa de comunicaciones hasta que sea funcional para un vehículo que utilice una sola unidad de Power Train.
+En el presente proyecto se diseñará, desarrollará e implementará el firmware de la placa de comunicaciones hasta que sea funcional para un vehículo que utilice una sola unidad de Power Train.
 Esto incluye la implementación de las siguientes características:
 \begin{itemize}
 	\item Manejo de entradas y salidas digitales.
 	\item Comunicación USB con el protocolo actual para la comunicación con la Tablet.
 	\item Comunicación con placa de control, transmisión de datos y recepción de datos.
 	\item Gestión del estado del vehículo.
-	\item Administración de la batería (Definir cuando cargar y balancear las celdas).
+	\item Administración de la batería (definir cuando cargar y balancear las celdas).
 	\item Control de temperatura del sistema.
 \end{itemize}
 
-Este proyecto no incluye el diseño del Hardware debido a que ya está preestablecido. El montaje del sistema en un vehículo particular tampoco esta dentro del alcance del proyecto.
+Este proyecto no incluye el diseño del Hardware debido a que ya está preestablecido. El montaje del sistema en un vehículo particular tampoco está dentro del alcance del proyecto.
 
 
 \section{5. Supuestos del proyecto}
 \label{sec:supuestos}
 
-	Para el desarrollo del presente proyecto se supone que:
+Para el desarrollo del presente proyecto se supone que:
 
-	\begin{itemize}
-		\item Se dispone del Hardware de la nueva placa de comunicaciones.
-		\item Se dispone de un banco de pruebas con el sistema completo para realizar pruebas de inmunidad al ruido del firmware.
-		\item Se dispone de un EVSE para las pruebas de carga.
-		\item Se dispone de módulos de batería con placas de BMS montada para desarrollar las estrategias de administración de batería.
-		\item Se dispone de un software de depuración USB para relevar la información del sistema.
-		\item Se dispone de alimentación trifásica para realizar los ciclos de carga.
-	\end{itemize}
+\begin{itemize}
+	\item Se dispone del Hardware de la nueva placa de comunicaciones.
+	\item Se dispone de un banco de pruebas con el sistema completo para realizar pruebas de inmunidad al ruido del firmware.
+	\item Se dispone de un EVSE para las pruebas de carga.
+	\item Se dispone de módulos de batería con placas de BMS montada para desarrollar las estrategias de administración de batería.
+	\item Se dispone de un software de depuración USB para relevar la información del sistema.
+	\item Se dispone de alimentación trifásica para realizar los ciclos de carga.
+\end{itemize}
 
 
 \section{6. Requerimientos}
 \label{sec:requerimientos}
 
-\begin{consigna}{red}
-	Los requerimientos deben numerarse y de ser posible estar agruparlos por afinidad, por ejemplo:
+\begin{enumerate}
+	\item Interfaces
+	      \begin{enumerate}
+		      \item El sistema debe poder comunicarse con el tablero con protocolo USB.
+		      \item El sistema debe poseer un botón de encendido
+		      \item El sistema debe tener poder actuar sobre los periféricos de refrigeración.
+		      \item El sistema debe responder a las señales digitales de los pulsadores y switches del vehículo. El tiempo de respuesta debe ser instantáneo para la percepción del usuario final.
+		      \item El sistema debe comunicarse con el BMS.
+		      \item El sistema debe comunicarse con la placa de control. Esta comunicación debe ser redundante y robusta.
+		      \item El sistema debe comunicarse con el EVSE.
+	      \end{enumerate}
+	\item Requerimientos funcionales
+	      \begin{enumerate}
+		      \item Comunicación con el tablero.
+		            \begin{enumerate}
+			            \item La taza de actualización de datos debe ser de 10ms.
+			            \item Se debe transmitir al tablero toda la información reportada por la placa de control.
+			            \item El estado de las entradas y salidas digitales debe ser reportado al tablero.
+			            \item Las temperaturas de la unidad de control, batería y motor deben ser reportadas al tablero.
+			            \item El sistema puede ser configurado mediante el usuario a través del tablero.
+		            \end{enumerate}
+		      \item Entradas digitales
+		            \begin{enumerate}
+			            \item El sistema debe poder recibir señales digitales de los pulsadores y switches del vehículo.
+			            \item Las señales deben ser remapeables por cada vehículo, es decir, disociar el pin físico de la funcionalidad específica.
+			            \item La activación de las entradas digitales (con tensión o masa) deben ser configurables fuera del tiempo de compilación por personal de la empresa.
+		            \end{enumerate}
+		      \item BMS
+		            \begin{enumerate}
+			            \item El sistema debe conocer el estado de todas las celdas.
+			            \item El sistema debe conocer las temperaturas en el interior de todos los módulos de batería.
+			            \item El sistema debe ser capaz de mantener las baterías balanceadas. Un máximo de 50 mV entre celdas.
+			            \item El sistema debe ser capaz de conectarse a distintas configuraciones de baterías según los parámetros del vehículo. Cada vehículo posee distinta cantidad de módulos y distintos modelos de módulos.
+		            \end{enumerate}
+		      \item Control de temperaturas
+		            \begin{enumerate}
+			            \item El sistema debe conocer la temperatura de la unidad de control.
+			            \item El sistema debe conocer la temperatura de la batería.
+			            \item El sistema debe conocer la temperatura del motor.
+			            \item El sistema debe accionar los actuadores de refrigeración cuando la temperatura de algún componente exceda el 60\% de la temperatura de falla.
+			            \item Las bombas de circulación de liquido deben accionarse siempre que el vehículo se encuentre en marcha o carga.
+		            \end{enumerate}
+		      \item Carga con EVSE
+		            \begin{enumerate}
+			            \item El sistema debe poder conectarse con un EVSE Mennekes.
+			            \item El sistema debe interpretar el limite de corriente que informa el EVSE para configurar el valor de la corriente de carga.
+			            \item El sistema debe conocer la temperatura del EVSE.
+			            \item El sistema debe disparar la orden de carga a la placa de control cuando el EVSE esté conectado y listo para cargar.
+			            \item La placa de comunicaciones debe sacar al vehículo de marcha si detecta la conexión de un EVSE.
+		            \end{enumerate}
+		      \item Comunicación con placa de control
+		            \begin{enumerate}
+			            \item La placa de comunicaciones debe indicar a la placa de control el estado objetivo (marcha, carga o reposo).
+			            \item La placa de comunicaciones debe indicar a la placa de control la dirección de avance (Directa o Reversa).
+			            \item La placa de comunicaciones debe informar la tensión máxima y mínima de las celdas a la placa de control.
+			            \item La placa de comunicaciones debe ser capaz de recibir datos de la placa de control cada 10 ms.
+		            \end{enumerate}
+	      \end{enumerate}
+	\item Requerimientos de robustez
+	      \begin{enumerate}
+		      \item El sistema debe ser capaz de mantener sus comunicaciones en condiciones ruidosas (aceleraciones fuertes o cargas rápidas).
+	      \end{enumerate}
+	\item Requerimientos de testing
+	      \begin{enumerate}
+		      \item El sistema debe ser poseer un modo de servicio técnico.
+		      \item El modo de servicio técnico debe permitir probar los actuadores del sistema de forma independiente.
+		      \item El modo de servicio técnico debe ser vía PC mediante el mismo USB del del tablero.
+		      \item El modo de servicio técnico debe permitir la configuración de los parámetros del sistema.
+	      \end{enumerate}
+\end{enumerate}
 
-	\begin{enumerate}
-		\item Requerimientos funcionales
-		      \begin{enumerate}
-			      \item El sistema debe...
-			      \item Tal componente debe...
-			      \item El usuario debe poder...
-		      \end{enumerate}
-		\item Requerimientos de documentación
-		      \begin{enumerate}
-			      \item Requerimiento 1
-			      \item Requerimiento 2 (prioridad menor)
-		      \end{enumerate}
-		\item Requerimiento de testing...
-		\item Requerimientos de la interfaz...
-		\item Requerimientos interoperabilidad...
-		\item etc...
-	\end{enumerate}
-
-	Leyendo los requerimientos se debe poder interpretar cómo será el proyecto y su funcionalidad.
-
-	Indicar claramente cuál es la prioridad entre los distintos requerimientos y si hay requerimientos opcionales.
-
-	No olvidarse de que los requerimientos incluyen a las regulaciones y normas vigentes!!!
-
-	Y al escribirlos seguir las siguientes reglas:
-	\begin{itemize}
-		\item Ser breve y conciso (nadie lee cosas largas).
-		\item Ser específico: no dejar lugar a confusiones.
-		\item Expresar los requerimientos en términos que sean cuantificables y medibles.
-	\end{itemize}
-
-\end{consigna}
 
 \section{7. Historias de usuarios (\textit{Product backlog})}
 \label{sec:backlog}
 
-\begin{consigna}{red}
-	Descripción: En esta sección se deben incluir las historias de usuarios y su ponderación (\textit{history points}). Recordar que las historias de usuarios son descripciones cortas y simples de una característica contada desde la perspectiva de la persona que desea la nueva capacidad, generalmente un usuario o cliente del sistema. La ponderación es un número entero que representa el tamaño de la historia comparada con otras historias de similar tipo.
+En esta sección se incluyen las historias de usuarios y su ponderación (\textit{story points})
 
-	El formato propuesto es: "como [rol] quiero [tal cosa] para [tal otra cosa]."
+``Como usuario quiero poder conectar el cargador y realizar una carga del vehículo."
 
-	Se debe indicar explícitamente el criterio para calcular los \textit{story points} de cada historia
-\end{consigna}
+Dificultad: alta (5) - Implica muchas horas de estudio, diseño e implementación para lograr una coordinación entre el EVSE, placa de comunicaciones, placa de control y BMS.
+
+Complejidad: alta (5) - Realizar un diseño seguro y bien coordinado entre los sistemas es fundamental debido a que se utilizan potencias de varios KW.
+
+Riesgo: alto (5) - Durante los ensayos de esta funcionalidad existe el riesgo de electrochoque e incendio de baterías.
+
+\textit{story points}: 13
+(5 + 5 + 5 = 15 -- 13 es el valor más cercano en Fibonacci)
+
+``Como desarrollador quiero poder validar el funcionamiento de los actuadores de refrigeración."
+
+Dificultad: alta (5) - Implica el desarrollo de un sistema de servicio técnico que permita interpretar comandos por un protocolo USB.
+
+Complejidad: media (3) - La creación del sistema y protocolo de comunicación implica una complejidad elevada. Pero no la ejecución dentro de los actuadores una vez que se interpreta en comando.
+
+Riesgo: bajo (1) - No hay riesgos importantes al utilizar esta funcionalidad.
+
+\textit{story points}: 13
+(5 + 3 + 1 = 9 -- 8 es el valor más cercano en Fibonacci)
+
+``Como desarrollador quiero poder configurar los parámetros de un tren motor conectandome con una PC al equipo."
+
+Dificultad: alta (4) - Implica muchas horas de diseño de firmware para parametrizar el vehículo con una lista acotada de parámetros.
+
+Complejidad: baja (1) - La dependencia de valores y condiciones según valores de parámetros no conlleva una gran complejidad.
+
+Riesgo: bajo (1) - El uso de una pc mediante USB para modificar valores del equipo no es una actividad riesgosa.
+
+\textit{story points}: 8
+(4 + 1 + 1 = 6 -- 5 es el valor más cercano en Fibonacci)
+
+``Como usuario quiero encender el vehículo y marcharlo"
+
+Dificultad: alta (5) - Implica muchas horas de diseño de firmware para coordinar las instrucciones del usuario con la placa de control mientras se monitorea la integridad del sistema para evitar accidentes.
+
+Complejidad: alta (5) - Contemplar las totalidad de la situaciones para garantizar la seguridad del usuario durante la marcha es una actividad muy compleja.
+
+Riesgo: alto (5) - Una falla en es sistema no contemplado puede tener como consecuencia una fatalidad.
+
+\textit{story points}: 8
+(5 + 5 + 5 = 15 -- 13 es el valor más cercano en Fibonacci)
+
+``Como usuario quiero poder encender las luces de mi vehículo."
+
+Dificultad: baja (1) - Implica atender entradas digitales y activar salidas digitales.
+
+Complejidad: baja (1) - El manejo de entradas y salidas digitales de baja complejidad en el desarrollo de firmware.
+
+Riesgo: bajo (1) - No existen grandes riesgos encendiendo y apagando luces que funcionan a 12 V.
+
+\textit{story points}: 8
+(1 + 1 + 1 = 3 -- 3 es el valor más cercano en Fibonacci)
 
 \section{8. Entregables principales del proyecto}
 \label{sec:entregables}
 
-\begin{consigna}{red}
+Los entregables del proyecto son:
 
-	Los entregables del proyecto son (ejemplo):
-
-	\begin{itemize}
-		\item Manual de uso
-		\item Diagrama de circuitos esquemáticos
-		\item Código fuente del firmware
-		\item Diagrama de instalación
-		\item Informe final
-		\item etc...
-	\end{itemize}
-
-\end{consigna}
+\begin{itemize}
+	\item Diagrama del firmware
+	\item Código fuente del firmware
+	\item Manual de uso para el sistema de servicio técnico
+	\item Informe final
+\end{itemize}
 
 \section{9. Desglose del trabajo en tareas}
 \label{sec:wbs}
 
 \begin{consigna}{red}
-	El WBS debe tener relación directa o indirecta con los requerimientos.  Son todas las actividades que se harán en el proyecto para dar cumplimiento a los requerimientos. Se recomienda mostrar el WBS mediante una lista indexada:
 
 	\begin{enumerate}
-		\item Grupo de tareas 1
+		\item Comunicación con el tablero (92 horas).
 		      \begin{enumerate}
-			      \item Tarea 1 (tantas hs)
-			      \item Tarea 2 (tantas hs)
-			      \item Tarea 3 (tantas hs)
+			      \item Implementación de capa USB e implementación del protocolo de comunicación (40 horas).
+			      \item Implementación del empaquetado de la información de la placa de control para su retransmisión (16 horas).
+			      \item Implementación del reporte de entradas y salidas digitales al tablero (8 horas).
+			      \item Implementación del empaquetado de las temperaturas y envío al tablero (8 horas).
+			      \item Implementación de protocolo para recibir instrucciones desde el tablero (16 horas).
+			      \item Validación de la comunicación a 10 ms (4 horas).
 		      \end{enumerate}
-		\item Grupo de tareas 2
+		\item Entradas digitales (40 horas).
 		      \begin{enumerate}
-			      \item Tarea 1 (tantas hs)
-			      \item Tarea 2 (tantas hs)
-			      \item Tarea 3 (tantas hs)
+			      \item Implementación de capa de atención a entradas digitales con abstracción entre la función y el pin físico (16 horas).
+			      \item Implementación de capa de activación de salidas digitales con abstracción entre la función y el pin físico (16 horas).
+			      \item Implementación de la lógica para configurar el mecanismo de activación de las entradas digitales (con tensión o masa) (8 horas).
 		      \end{enumerate}
-		\item Grupo de tareas 3
+		\item BMS (80 horas).
 		      \begin{enumerate}
-			      \item Tarea 1 (tantas hs)
-			      \item Tarea 2 (tantas hs)
-			      \item Tarea 3 (tantas hs)
-			      \item Tarea 4 (tantas hs)
-			      \item Tarea 5 (tantas hs)
+			      \item Implementar la configuración de los parámetros de los BMS (16 horas).
+			      \item Implementación de la inicialización del sistema de BMS según los parámetros de configuración (32 horas).
+			      \item Implementar las lecturas de tensiones de celdas (8 horas).
+			      \item Implementar las lecturas de temperaturas de módulos (8 horas).
+			      \item Implementar lógica y mecanismo de balanceo de celdas (16 horas).
+		      \end{enumerate}
+		\item Control de temperaturas (56 horas)
+		      \begin{enumerate}
+			      \item Activación de entradas analógicas para la medición de temperatura de motor (16 horas).
+			      \item Sustracción de la temperaturas de la unidad de control informada por la placa de control (8 horas).
+			      \item Implementación de lógica de control de temperaturas según los limites establecidos (histéresis entre el 45\% y 55\% de las temperaturas de falla) (16 horas).
+			      \item Validación del correcto funcionamiento del sistema (16 horas).
+		      \end{enumerate}
+		\item Carga con EVSE (80 horas).
+		      \begin{enumerate}
+			      \item Implementar la detección de conexión del EVSE (16 horas).
+			      \item Implementación de la decodificación del PWM para conocer la corriente máxima de la carga (16 horas).
+			      \item Implementación de la lógica de carga y coordinación entre el BMS, EVSE y placa de control (32 horas).
+			      \item Implementación de la salida de marcha ante el conexionado del EVSE (8 horas).
+			      \item Validación del sistema con una carga a 16 A por fase (8 horas).
+		      \end{enumerate}
+		\item Comunicación con placa de control (56 horas).
+		      \begin{enumerate}
+			      \item Implementación de la recepción de datos de la placa de control vía UART (32 horas).
+			      \item Implementación del envío de datos de la placa de control vía UART (16 horas).
+			      \item Validación de la integridad de los datos a la tasa exigida por los requerimientos (10 ms) (8 horas).
+		      \end{enumerate}
+		\item Modo servicio técnico (72 horas).
+		      \begin{enumerate}
+			      \item Implementación del modo de servicio técnico (16 horas).
+			      \item Creación e implementación de comandos de servicio técnico (16 horas).
+			      \item Prueba de los comandos de servicio técnico (8 horas).
+			      \item Redacción de manual de uso para el sistema de servicio técnico (32 horas).
+		      \end{enumerate}
+		\item Informe final (120 horas).
+		      \begin{enumerate}
+			      \item Redacción del marco teórico (40 horas).
+			      \item Realización de diagramas del firmware (40 horas).
+			      \item Redacción de resultados (40 horas).
 		      \end{enumerate}
 	\end{enumerate}
 
-	Cantidad total de horas: (tantas hs)
 
-	Se recomienda que no haya ninguna tarea que lleve más de 40 hs.
+	Cantidad total de horas: 596 horas.
+
 
 \end{consigna}
 
