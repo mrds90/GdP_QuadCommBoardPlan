@@ -7,7 +7,7 @@ codirector, % Uncomment to add a codirector to the title page
 
 
 % El títulos de la memoria, se usa en la carátula y se puede usar el cualquier lugar del documento con el comando \ttitle
-\titulo{Desarrollo del firmware de la placa de comunicaciones de un Power Train} 
+\titulo{Firmware de comunicaciones para un tren motor} 
 
 % Nombre del posgrado, se usa en la carátula y se puede usar el cualquier lugar del documento con el comando \degreename
 \posgrado{Carrera de Especialización en Sistemas Embebidos} 
@@ -92,7 +92,7 @@ codirector, % Uncomment to add a codirector to the title page
 
 \vspace{2cm}
 
-Por medio de la presente se acuerda con el Ing. \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'', consistirá esencialmente en la implementación del firmware sobre la placa de comunicaciones de un Tren Motor, y tendrá un presupuesto preliminar estimado de 1700 hs de trabajo y \$900000, con fecha de inicio \fechaInicioName\hspace{1px} y fecha de presentación pública \fechaFinalName.
+Por medio de la presente se acuerda con el Ing. \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'', consistirá esencialmente en la implementación del firmware sobre la placa de comunicaciones de un Tren Motor, y tendrá un presupuesto preliminar estimado de 596 hs de trabajo y \$450000, con fecha de inicio \fechaInicioName\hspace{1px} y fecha de presentación pública \fechaFinalName.
 
 Se adjunta a esta acta la planificación inicial.
 
@@ -118,34 +118,34 @@ Se adjunta a esta acta la planificación inicial.
 
 Un Power Train o Tren Motor es el sistema encargado de impulsar los vehículos eléctricos. Estos convierten la energía eléctrica almacenada en baterías a motriz alimentando un motor eléctrico.
 
-El Power Train es uno de los dos productos principales que desarrolla y comercializa la empresa Voltu Motors. Este Tren Motor puede adaptarse a diferentes tipos de vehículos, actualmente se han instalado en motos, cuatriciclos, colectivos y camiones.
+El tren motor es uno de los dos productos principales que desarrolla y comercializa la empresa Voltu Motors. Este Tren Motor puede adaptarse a diferentes tipos de vehículos, actualmente se han instalado en motos, cuatriciclos, colectivos y camiones.
 
-El dispositivo consta de un pack de baterías, una unidad de control, el motor. La unidad de control de Voltu Motors utiliza dos placas microcontroladas para resolver el Hardware.
+El dispositivo consta de un pack de baterías, una unidad de control, el motor. La unidad de control de Voltu Motors utiliza dos placas microcontroladas para resolver el hardware.
 La primera de ellas es un DSP que realiza el control para mover el motor y cargar las baterías . La segunda es la placa de comunicaciones que cumple la función de interactuar con el exterior de la unidad de control.
 
-El usuario del vehículo puede controlar el Tren Motor mediante una interfaz gráfica, la cual se encuentra en el tablero del vehículo. Éste tablero es una tablet que se comunica con la unidad de control mediante protocolo USB.
+El usuario del vehículo puede controlar el Tren Motor mediante una interfaz gráfica, la cual se encuentra en el tablero del vehículo. Este tablero es una tablet que se comunica con la unidad de control mediante protocolo USB.
 
-La placa de comunicaciones posee
+La placa de comunicaciones posee:
 
 \begin{itemize}
 	\item Entradas y salidas digitales para el manejo de periféricos como luces, ventiladores, etc.
 	\item Interfaz USB para comunicarse con la tablet del usuario.
-	\item Interfaz UART para comunicarse con la placa de control, una con fines de debug y otra para comunicarse con el BMS (\textit{Batery Management System}).
+	\item Interfaz UART para comunicarse con la placa de control, una con fines de \textit{debug} y otra para comunicarse con el BMS (\textit{Batery Management System}).
 	\item Interfaz para gestionar el conexionado de un EVSE (\textit{Electric Vehicle Supply Equipment}).
 \end{itemize}
 
 Las características listadas anteriormente convierten a la placa de comunicaciones en la encargada de gestionar el estado de la unidad de control. Esta utiliza la información que recibe de todas sus interfaces para la toma de decisiones.
 
-Actualmente, existe una versión funcional con un Hardware distinto en donde la placa de control gestiona gran parte de las tareas que se proponen para la nueva placa de comunicaciones.
+Actualmente, existe una versión funcional con un hardware distinto en donde la placa de control gestiona gran parte de las tareas que se proponen para la nueva placa de comunicaciones.
 
-La nueva implementación permitirá reducir las tareas del DSP a los algoritmos de control del motor y la carga, y mejora así la seguridad del sistema. Además, esta configuración incorpora nuevas características, como el manejo de distintos tipos de EVSE y la posibilidad de definir fuera de tiempo de compilación características del Power Train que se adapten a distintos tipos de vehículos.
+La nueva implementación permitirá reducir las tareas del DSP a los algoritmos de control del motor y la carga, y mejora así la seguridad del sistema. Además, esta configuración incorpora nuevas características, como el manejo de distintos tipos de EVSE y la posibilidad de definir fuera de tiempo de compilación características del tren motor que se adapten a distintos tipos de vehículos.
 
 %\vspace{25px}
 
 
-En la Figura \ref{fig:diagBloques} se presenta el diagrama en bloques del sistema. Se puede observar como la placa de comunicaciones interactúa con la Tablet, el DSP y el BMS, mientras que la placa de control se encarga de controlar el flujo de energía para la carga de la batería o marcha del motor. Adicionalmente la placa de comunicaciones gestiona las entradas y salidas con los periféricos del vehículo.
+En la Figura \ref{fig:diagBloques} se presenta el diagrama en bloques del sistema. Se puede observar como la placa de comunicaciones interactúa con la Tablet, el DSP y el BMS, mientras que la placa de control se encarga de controlar el flujo de energía para la carga de la batería o marcha del motor. Adicionalmente, la placa de comunicaciones gestiona las entradas y salidas con los periféricos del vehículo.
 
-Debido a que la nueva versión del Power Train está planificada con este Hardware, el desarrollo de este proyecto es fundamental para su lanzamiento.
+Debido a que la nueva versión del tren motor está planificada con este hardware, el desarrollo de este proyecto es fundamental para su lanzamiento.
 
 \begin{figure}[htpb]
 	\centering
@@ -171,7 +171,7 @@ Debido a que la nueva versión del Power Train está planificada con este Hardwa
 		Impulsor      & Luciano Vittori   & \empclientename & Lider de Control y Firmware \\ \hline
 		Responsable   & \authorname       & FIUBA           & Alumno                      \\ \hline
 		Orientador    & \supname          & \pertesupname   & Director Trabajo final      \\ \hline
-		Usuario final & -                 & -               & -                           \\ \hline
+		Usuario final & Gonzalo Cuenca    & \empclientename & Testing y Calidad           \\ \hline
 	\end{tabularx}
 \end{table}
 
@@ -182,13 +182,13 @@ Debido a que la nueva versión del Power Train está planificada con este Hardwa
 \section{3. Propósito del proyecto}
 \label{sec:proposito}
 
-El propósito de este proyecto es desarrollar el firmware de la nueva placa de comunicaciones. Éste firmware debe cubrir las características de la versión anterior y ademas contemplar el manejo del BMS, EVSE y periféricos.
+El propósito de este proyecto es desarrollar el firmware de la nueva placa de comunicaciones. Este firmware debe cubrir las características de la versión anterior y además contemplar el manejo del BMS, EVSE y periféricos.
 La nueva versión también será la encargada de realizar el control de temperatura del sistema.
 
 \section{4. Alcance del proyecto}
 \label{sec:alcance}
 
-En el presente proyecto se diseñará, desarrollará e implementará el firmware de la placa de comunicaciones hasta que sea funcional para un vehículo que utilice una sola unidad de Power Train.
+En el presente proyecto se diseñará, desarrollará e implementará el firmware de la placa de comunicaciones hasta que sea funcional para un vehículo que utilice una sola unidad de tren motor.
 Esto incluye la implementación de las siguientes características:
 \begin{itemize}
 	\item Manejo de entradas y salidas digitales.
@@ -199,7 +199,7 @@ Esto incluye la implementación de las siguientes características:
 	\item Control de temperatura del sistema.
 \end{itemize}
 
-Este proyecto no incluye el diseño del Hardware debido a que ya está preestablecido. El montaje del sistema en un vehículo particular tampoco está dentro del alcance del proyecto.
+Este proyecto no incluye el diseño del hardware debido a que ya está preestablecido. El montaje del sistema en un vehículo particular tampoco está dentro del alcance del proyecto.
 
 
 \section{5. Supuestos del proyecto}
@@ -208,7 +208,7 @@ Este proyecto no incluye el diseño del Hardware debido a que ya está preestabl
 Para el desarrollo del presente proyecto se supone que:
 
 \begin{itemize}
-	\item Se dispone del Hardware de la nueva placa de comunicaciones.
+	\item Se dispone del hardware de la nueva placa de comunicaciones.
 	\item Se dispone de un banco de pruebas con el sistema completo para realizar pruebas de inmunidad al ruido del firmware.
 	\item Se dispone de un EVSE para las pruebas de carga.
 	\item Se dispone de módulos de batería con placas de BMS montada para desarrollar las estrategias de administración de batería.
@@ -225,8 +225,8 @@ Para el desarrollo del presente proyecto se supone que:
 	      \begin{enumerate}
 		      \item El sistema debe poder comunicarse con el tablero con protocolo USB.
 		      \item El sistema debe poseer un botón de encendido
-		      \item El sistema debe tener poder actuar sobre los periféricos de refrigeración.
-		      \item El sistema debe responder a las señales digitales de los pulsadores y switches del vehículo. El tiempo de respuesta debe ser instantáneo para la percepción del usuario final.
+		      \item El sistema debe poder actuar sobre los periféricos de refrigeración.
+		      \item El sistema debe responder a las señales digitales de los pulsadores y switches del vehículo. El tiempo de respuesta debe ser instantáneo para la percepción del usuario final (menor a 100 ms).
 		      \item El sistema debe comunicarse con el BMS.
 		      \item El sistema debe comunicarse con la placa de control. Esta comunicación debe ser redundante y robusta.
 		      \item El sistema debe comunicarse con el EVSE.
@@ -235,7 +235,7 @@ Para el desarrollo del presente proyecto se supone que:
 	      \begin{enumerate}
 		      \item Comunicación con el tablero.
 		            \begin{enumerate}
-			            \item La taza de actualización de datos debe ser de 10ms.
+			            \item La taza de actualización de datos debe ser de 10 ms.
 			            \item Se debe transmitir al tablero toda la información reportada por la placa de control.
 			            \item El estado de las entradas y salidas digitales debe ser reportado al tablero.
 			            \item Las temperaturas de la unidad de control, batería y motor deben ser reportadas al tablero.
@@ -312,14 +312,14 @@ Riesgo: alto (5) - Durante los ensayos de esta funcionalidad existe el riesgo de
 
 Dificultad: alta (5) - Implica el desarrollo de un sistema de servicio técnico que permita interpretar comandos por un protocolo USB.
 
-Complejidad: media (3) - La creación del sistema y protocolo de comunicación implica una complejidad elevada. Pero no la ejecución dentro de los actuadores una vez que se interpreta en comando.
+Complejidad: media (3) - La creación del sistema y protocolo de comunicación implica una complejidad elevada. Pero la conmutación de los actuadores una vez que se interpreta el comando no lo es.
 
 Riesgo: bajo (1) - No hay riesgos importantes al utilizar esta funcionalidad.
 
 \textit{story points}: 13
 (5 + 3 + 1 = 9 -- 8 es el valor más cercano en Fibonacci)
 
-``Como desarrollador quiero poder configurar los parámetros de un tren motor conectandome con una PC al equipo."
+``Como desarrollador quiero poder configurar los parámetros de un tren motor conectándome con una PC al equipo."
 
 Dificultad: alta (4) - Implica muchas horas de diseño de firmware para parametrizar el vehículo con una lista acotada de parámetros.
 
@@ -367,73 +367,72 @@ Los entregables del proyecto son:
 \section{9. Desglose del trabajo en tareas}
 \label{sec:wbs}
 
-\begin{consigna}{red}
 
-	\begin{enumerate}
-		\item Comunicación con el tablero (92 horas).
-		      \begin{enumerate}
-			      \item Implementación de capa USB e implementación del protocolo de comunicación (40 horas).
-			      \item Implementación del empaquetado de la información de la placa de control para su retransmisión (16 horas).
-			      \item Implementación del reporte de entradas y salidas digitales al tablero (8 horas).
-			      \item Implementación del empaquetado de las temperaturas y envío al tablero (8 horas).
-			      \item Implementación de protocolo para recibir instrucciones desde el tablero (16 horas).
-			      \item Validación de la comunicación a 10 ms (4 horas).
-		      \end{enumerate}
-		\item Entradas digitales (40 horas).
-		      \begin{enumerate}
-			      \item Implementación de capa de atención a entradas digitales con abstracción entre la función y el pin físico (16 horas).
-			      \item Implementación de capa de activación de salidas digitales con abstracción entre la función y el pin físico (16 horas).
-			      \item Implementación de la lógica para configurar el mecanismo de activación de las entradas digitales (con tensión o masa) (8 horas).
-		      \end{enumerate}
-		\item BMS (80 horas).
-		      \begin{enumerate}
-			      \item Implementar la configuración de los parámetros de los BMS (16 horas).
-			      \item Implementación de la inicialización del sistema de BMS según los parámetros de configuración (32 horas).
-			      \item Implementar las lecturas de tensiones de celdas (8 horas).
-			      \item Implementar las lecturas de temperaturas de módulos (8 horas).
-			      \item Implementar lógica y mecanismo de balanceo de celdas (16 horas).
-		      \end{enumerate}
-		\item Control de temperaturas (56 horas)
-		      \begin{enumerate}
-			      \item Activación de entradas analógicas para la medición de temperatura de motor (16 horas).
-			      \item Sustracción de la temperaturas de la unidad de control informada por la placa de control (8 horas).
-			      \item Implementación de lógica de control de temperaturas según los limites establecidos (histéresis entre el 45\% y 55\% de las temperaturas de falla) (16 horas).
-			      \item Validación del correcto funcionamiento del sistema (16 horas).
-		      \end{enumerate}
-		\item Carga con EVSE (80 horas).
-		      \begin{enumerate}
-			      \item Implementar la detección de conexión del EVSE (16 horas).
-			      \item Implementación de la decodificación del PWM para conocer la corriente máxima de la carga (16 horas).
-			      \item Implementación de la lógica de carga y coordinación entre el BMS, EVSE y placa de control (32 horas).
-			      \item Implementación de la salida de marcha ante el conexionado del EVSE (8 horas).
-			      \item Validación del sistema con una carga a 16 A por fase (8 horas).
-		      \end{enumerate}
-		\item Comunicación con placa de control (56 horas).
-		      \begin{enumerate}
-			      \item Implementación de la recepción de datos de la placa de control vía UART (32 horas).
-			      \item Implementación del envío de datos de la placa de control vía UART (16 horas).
-			      \item Validación de la integridad de los datos a la tasa exigida por los requerimientos (10 ms) (8 horas).
-		      \end{enumerate}
-		\item Modo servicio técnico (72 horas).
-		      \begin{enumerate}
-			      \item Implementación del modo de servicio técnico (16 horas).
-			      \item Creación e implementación de comandos de servicio técnico (16 horas).
-			      \item Prueba de los comandos de servicio técnico (8 horas).
-			      \item Redacción de manual de uso para el sistema de servicio técnico (32 horas).
-		      \end{enumerate}
-		\item Informe final (120 horas).
-		      \begin{enumerate}
-			      \item Redacción del marco teórico (40 horas).
-			      \item Realización de diagramas del firmware (40 horas).
-			      \item Redacción de resultados (40 horas).
-		      \end{enumerate}
-	\end{enumerate}
-
-
-	Cantidad total de horas: 596 horas.
+\begin{enumerate}
+	\item Comunicación con el tablero (92 horas).
+	      \begin{enumerate}
+		      \item Implementación de capa USB e implementación del protocolo de comunicación (40 horas).
+		      \item Implementación del empaquetado de la información de la placa de control para su retransmisión (16 horas).
+		      \item Implementación del reporte de entradas y salidas digitales al tablero (8 horas).
+		      \item Implementación del empaquetado de las temperaturas y envío al tablero (8 horas).
+		      \item Implementación de protocolo para recibir instrucciones desde el tablero (16 horas).
+		      \item Validación de la comunicación a 10 ms (4 horas).
+	      \end{enumerate}
+	\item Entradas digitales (40 horas).
+	      \begin{enumerate}
+		      \item Implementación de capa de atención a entradas digitales con abstracción entre la función y el pin físico (16 horas).
+		      \item Implementación de capa de activación de salidas digitales con abstracción entre la función y el pin físico (16 horas).
+		      \item Implementación de la lógica para configurar el mecanismo de activación de las entradas digitales (con tensión o masa) (8 horas).
+	      \end{enumerate}
+	\item BMS (80 horas).
+	      \begin{enumerate}
+		      \item Implementar la configuración de los parámetros de los BMS (16 horas).
+		      \item Implementación de la inicialización del sistema de BMS según los parámetros de configuración (32 horas).
+		      \item Implementar las lecturas de tensiones de celdas (8 horas).
+		      \item Implementar las lecturas de temperaturas de módulos (8 horas).
+		      \item Implementar lógica y mecanismo de balanceo de celdas (16 horas).
+	      \end{enumerate}
+	\item Control de temperaturas (56 horas)
+	      \begin{enumerate}
+		      \item Activación de entradas analógicas para la medición de temperatura de motor (16 horas).
+		      \item Sustracción de la temperaturas de la unidad de control informada por la placa de control (8 horas).
+		      \item Implementación de lógica de control de temperaturas según los limites establecidos (histéresis entre el 45\% y 55\% de las temperaturas de falla) (16 horas).
+		      \item Validación del correcto funcionamiento del sistema (16 horas).
+	      \end{enumerate}
+	\item Carga con EVSE (80 horas).
+	      \begin{enumerate}
+		      \item Implementar la detección de conexión del EVSE (16 horas).
+		      \item Implementación de la decodificación del PWM para conocer la corriente máxima de la carga (16 horas).
+		      \item Implementación de la lógica de carga y coordinación entre el BMS, EVSE y placa de control (32 horas).
+		      \item Implementación de la salida de marcha ante el conexionado del EVSE (8 horas).
+		      \item Validación del sistema con una carga a 16 A por fase (8 horas).
+	      \end{enumerate}
+	\item Comunicación con placa de control (56 horas).
+	      \begin{enumerate}
+		      \item Implementación de la recepción de datos de la placa de control vía UART (32 horas).
+		      \item Implementación del envío de datos de la placa de control vía UART (16 horas).
+		      \item Validación de la integridad de los datos a la tasa exigida por los requerimientos (10 ms) (8 horas).
+	      \end{enumerate}
+	\item Modo servicio técnico (72 horas).
+	      \begin{enumerate}
+		      \item Implementación del modo de servicio técnico (16 horas).
+		      \item Creación e implementación de comandos de servicio técnico (16 horas).
+		      \item Prueba de los comandos de servicio técnico (8 horas).
+		      \item Redacción de manual de uso para el sistema de servicio técnico (32 horas).
+	      \end{enumerate}
+	\item Informe final (120 horas).
+	      \begin{enumerate}
+		      \item Redacción del marco teórico (40 horas).
+		      \item Realización de diagramas del firmware (40 horas).
+		      \item Redacción de resultados (40 horas).
+	      \end{enumerate}
+\end{enumerate}
 
 
-\end{consigna}
+Cantidad total de horas: 596 horas.
+
+
+
 
 \section{10. Diagrama de Activity On Node}
 \label{sec:AoN}
