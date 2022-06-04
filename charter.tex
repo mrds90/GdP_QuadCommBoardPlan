@@ -22,7 +22,7 @@ codirector, % Uncomment to add a codirector to the title page
 % El nombre del director y co-director, se puede usar el cualquier lugar del documento con el comando \supname y \cosupname y \pertesupname y \pertecosupname
 \director{A definir}
 \pertenenciaDirector{pertenencia} 
-% FIXME:NO IMPLEMENTADO EL CODIRECTOR ni su pertenencia
+% FIXME:No IMPLEMENTADO EL CODIRECTOR ni su pertenencia
 \codirector{John Doe} % para que aparezca en la portada se debe descomentar la opción codirector en el documentclass
 \pertenenciaCoDirector{FIUBA}
 
@@ -72,6 +72,8 @@ codirector, % Uncomment to add a codirector to the title page
 		1        & Se completa hasta el punto 5 inclusive                                          & 13/03/2022       \\ \hline
 		2        & Se completa hasta el punto 9 inclusive                                          & 20/03/2022       \\ \hline
 		3        & Se completa hasta el punto 12 inclusive                                         & 29/03/2022       \\ \hline
+		4        & Correcciones finales                                                            & 14/05/2022       \\ \hline
+
 		%		  Se puede agregar algo más \newline
 		%		  En distintas líneas \newline
 		%		  Así                                                    & dd/mm/aaaa \\ \hline
@@ -93,7 +95,7 @@ codirector, % Uncomment to add a codirector to the title page
 
 \vspace{2cm}
 
-Por medio de la presente se acuerda con el Ing. \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'', consistirá esencialmente en la implementación del firmware sobre la placa de comunicaciones de un Tren Motor, y tendrá un presupuesto preliminar estimado de 596 hs de trabajo y \$3447132, con fecha de inicio \fechaInicioName\hspace{1px} y fecha de presentación pública \fechaFinalName.
+Por medio de la presente se acuerda con el Ing. \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'', consistirá implementar en el nuevo hardware de comunicaciones las funcionalidades existentes e incorporar funcionalidades de la placa de control, y tendrá un presupuesto preliminar estimado de 596 hs de trabajo y \$3.447.132, con fecha de inicio \fechaInicioName\hspace{1px} y fecha de presentación pública \fechaFinalName.
 
 Se adjunta a esta acta la planificación inicial.
 
@@ -520,102 +522,365 @@ Cantidad total de horas: 596 horas.
 \section{13. Gestión de riesgos}
 \label{sec:riesgos}
 
-\begin{consigna}{red}
-	a) Identificación de los riesgos (al menos cinco) y estimación de sus consecuencias:
+a) Identificación de los riesgos y estimación de sus consecuencias:
 
-	Riesgo 1: detallar el riesgo (riesgo es algo que si ocurre altera los planes previstos de forma negativa)
-	\begin{itemize}
-		\item Severidad (S): mientras más severo, más alto es el número (usar números del 1 al 10).\\
-		      Justificar el motivo por el cual se asigna determinado número de severidad (S).
-		\item Probabilidad de ocurrencia (O): mientras más probable, más alto es el número (usar del 1 al 10).\\
-		      Justificar el motivo por el cual se asigna determinado número de (O).
-	\end{itemize}
+Riesgo 1: demora en la llegada de componentes del exterior.
+\begin{itemize}
+	\item Severidad (S): 8
 
-	Riesgo 2:
-	\begin{itemize}
-		\item Severidad (S):
-		\item Ocurrencia (O):
-	\end{itemize}
+	      La demora en la llegada de componentes del exterior, cuando son necesarios, detiene completamente el avance del proyecto.
+	\item Probabilidad de ocurrencia (O): 9
 
-	Riesgo 3:
-	\begin{itemize}
-		\item Severidad (S):
-		\item Ocurrencia (O):
-	\end{itemize}
+	      Las demora de recursos del exterior es muy recurrente en Argentina.
+\end{itemize}
 
+Riesgo 2: el vínculo con la empresa se termine antes de lo establecido.
+\begin{itemize}
+	\item Severidad (S): 10.
 
-	b) Tabla de gestión de riesgos:      (El RPN se calcula como RPN=SxO)
+	      No será posible realizar el proyecto.
+	\item Ocurrencia (O): 2.
 
-	\begin{table}[htpb]
-		\centering
-		\begin{tabularx}{\linewidth}{@{}|X|c|c|c|c|c|c|@{}}
-			\hline
-			\rowcolor[HTML]{C0C0C0}
-			Riesgo & S & O & RPN & S* & O* & RPN* \\ \hline
-			       &   &   &     &    &    &      \\ \hline
-			       &   &   &     &    &    &      \\ \hline
-			       &   &   &     &    &    &      \\ \hline
-			       &   &   &     &    &    &      \\ \hline
-			       &   &   &     &    &    &      \\ \hline
-		\end{tabularx}%
-	\end{table}
+	      El vínculo actual con \clientename\hspace{1px}  es poco probable que finalice debido a que actualmente el autor trabaja en relación de dependencia para él.
+\end{itemize}
 
-	Criterio adoptado:
-	Se tomarán medidas de mitigación en los riesgos cuyos números de RPN sean mayores a...
+Riesgo 3: accidentes graves en las verificaciones del proyecto debido a los riesgos asociados a la alta tensión.
+\begin{itemize}
+	\item Severidad (S): 10.
 
-	Nota: los valores marcados con (*) en la tabla corresponden luego de haber aplicado la mitigación.
+	      El Tren Motor utiliza tensiones mayores a 300 V. Esto puede causar daños graves y poner en riesgo el avance del proyecto.
+	\item Ocurrencia (O): 5.
 
-	c) Plan de mitigación de los riesgos que originalmente excedían el RPN máximo establecido:
+	      La constante manipulación de las placas con altas tensiones aumenta el riesgo de que se produzcan accidentes.
+\end{itemize}
 
-	Riesgo 1: plan de mitigación (si por el RPN fuera necesario elaborar un plan de mitigación).
-	Nueva asignación de S y O, con su respectiva justificación:
-	- Severidad (S): mientras más severo, más alto es el número (usar números del 1 al 10).
-	Justificar el motivo por el cual se asigna determinado número de severidad (S).
-	- Probabilidad de ocurrencia (O): mientras más probable, más alto es el número (usar del 1 al 10).
-	Justificar el motivo por el cual se asigna determinado número de (O).
+Riesgo 4: cancelación del proyecto del tren motor por decisión de la empresa.
+\begin{itemize}
+	\item Severidad (S): 10.
 
-	Riesgo 2: plan de mitigación (si por el RPN fuera necesario elaborar un plan de mitigación).
+	      La cancelación del proyecto del tren motor torna innecesario el desarrollo de este proyecto.
+	\item Ocurrencia (O): 2.
 
-	Riesgo 3: plan de mitigación (si por el RPN fuera necesario elaborar un plan de mitigación).
+	      La tecnología actualmente es muy demandada desde el área comercial y no se presentan amenazas evidentes sobre la continuidad del proyecto.
+\end{itemize}
 
-\end{consigna}
+Riesgo 5: subestimación de tiempos en tareas de la línea crítica.
+\begin{itemize}
+	\item Severidad (S): 6.
+
+	      Este error en la planificación indefectiblemente atrasa todo el plan.
+
+	\item Ocurrencia (O): 7.
+
+	      El poco conocimiento sobre la complejidad del problema a resolver aumenta significativamente las probabilidades de error en la estimación de tiempos.
+\end{itemize}
+b) Tabla de gestión de riesgos:      (El RPN se calcula como RPN=SxO)
+\begin{table}[htpb]
+	\centering
+	\begin{tabularx}{\linewidth}{@{}|X|c|c|c|c|c|c|@{}}
+		\hline
+		\rowcolor[HTML]{C0C0C0}
+		Riesgo & S  & O & RPN & S* & O* & RPN* \\ \hline
+		1      & 8  & 9 & 72  & 8  & 3  & 24   \\ \hline
+		2      & 10 & 2 & 20  &    &    &      \\ \hline
+		3      & 10 & 5 & 50  & 10 & 1  & 10   \\ \hline
+		4      & 10 & 2 & 20  &    &    &      \\ \hline
+		5      & 6  & 7 & 42  &    &    &      \\ \hline
+	\end{tabularx}%
+\end{table}
+
+Criterio adoptado:
+se tomarán medidas de mitigación en los riesgos cuyos números de RPN sean mayores a 45
+
+Nota: los valores marcados con (*) en la tabla corresponden luego de haber aplicado la mitigación.
+
+c) Plan de mitigación de los riesgos que originalmente excedían el RPN máximo establecido:
+
+Riesgo 1: aprovechando que la lista de componentes está definida, se realizará el pedido con anticipación para asegurar un período de tiempo extenso desde que se piden los elementos al exterior hasta que se los necesite.
+
+- Severidad (S): 8
+
+La severidad no varía.
+
+- Probabilidad de ocurrencia (O): 3
+
+La anticipación reduce significativamente la probabilidad de que ocurra.
+
+Riesgo 3: se utilizará serigrafía en la placa para indicar las regiones de alta tensión, se utilizará las protecciones y aislaciones necesarias para reducir la probabilidad de shock eléctrico.
+
+- Severidad (S): 8
+
+La severidad no varía.
+
+- Probabilidad de ocurrencia (O): 2
+
+Las medidas de seguridad y protocolización reduce significativamente la probabilidad de que ocurra.
 
 
 \section{14. Gestión de la calidad}
 \label{sec:calidad}
 
-\begin{consigna}{red}
-	Para cada uno de los requerimientos del proyecto indique:
-	\begin{itemize}
-		\item Req \#1: copiar acá el requerimiento.
+\begin{enumerate}
+	\item Interfaces
+	      \begin{enumerate}
+		      \item El sistema debe poder comunicarse con el tablero con protocolo USB.
 
-		      \begin{itemize}
-			      \item Verificación para confirmar si se cumplió con lo requerido antes de mostrar el sistema al cliente. Detallar
-			      \item Validación con el cliente para confirmar que está de acuerdo en que se cumplió con lo requerido. Detallar
-		      \end{itemize}
+		            Verificación: en la base de datos generada por el tablero se visualiza que los datos cargados son los esperados luego de una carga y el uso en marcha del equipo.
 
-	\end{itemize}
+		            Validación: el usuario visualiza la información del tablero correctamente.
 
-	Tener en cuenta que en este contexto se pueden mencionar simulaciones, cálculos, revisión de hojas de datos, consulta con expertos, mediciones, etc.  Las acciones de verificación suelen considerar al entregable como ``caja blanca'', es decir se conoce en profundidad su funcionamiento interno.  En cambio, las acciones de validación suelen considerar al entregable como ``caja negra'', es decir, que no se conocen los detalles de su funcionamiento interno.
+		      \item El sistema debe poseer un botón de encendido
 
-\end{consigna}
+		            Verificación: el botón de encendido enciende el equipo cuando se presiona y apaga el equipo al mantenerse presionado por medio segundo.
 
+		            Validación: el usuario puede encender y apagar el equipo.
+		      \item El sistema debe poder actuar sobre los periféricos de refrigeración.
+
+		            Verificación: la refrigeración se enciende y apaga cuando se alcanzan las temperaturas establecidas.
+
+		            Validación: el usuario usa el equipo y las temperaturas se mantienen constantemente dentro de limites seguros.
+
+		      \item El sistema debe responder a las señales digitales de los pulsadores y switches del vehículo. El tiempo de respuesta debe ser instantáneo para la percepción del usuario final (menor a 100 ms).
+
+		            Verificación: se observa en la base de datos de la tablet que el estado de todas las entradas digitales son conmutadas al estimularlas con los pulsadores/switches.
+
+		            Validación: el usuario usa las funcionalidades de los pulsadores y switches sin percibir demoras en la respuesta.
+		      \item El sistema debe comunicarse con el BMS.
+
+		            Verificación: se verifican que las tensiones y temperaturas reportadas por el BMS son las medidas con instrumentos de medición patrón.
+
+		            Validación: el usuario no reporta fallas debido a errores en el BMS.
+
+		      \item El sistema debe comunicarse con la placa de control. Esta comunicación debe ser redundante y robusta.
+
+		            Verificación: se verifica que la placa de control responde a las ordenes de la placa de comunicaciones y la información recibida por la placa de control es la esperada durante una carga y una marcha.
+
+		            Validación: el usuario siempre puede visualizar datos en el tablero que genera la placa de control (ej: temperatura de la unidad de control).
+		      \item El sistema debe comunicarse con el EVSE.
+
+		            Verificación: se puede completar un ciclo de carga.
+
+		            Validación: el usuario puede cargar el vehículo sin inconvenientes.
+
+	      \end{enumerate}
+	\item Requerimientos funcionales
+	      \begin{enumerate}
+		      \item Comunicación con el tablero.
+		            \begin{enumerate}
+			            \item La taza de actualización de datos debe ser de 10 ms.
+
+			                  Verificación: se verifica contando en el software del tablero que esa taza de datos se cumple.
+
+			                  Validación: el usuario puede visualizar los datos en el tablero de forma continua.
+
+			            \item Se debe transmitir al tablero toda la información reportada por la placa de control.
+
+			                  Verificación: se verifica en la base de datos del tablero que la información de la placa de control se encuentra incorrupta.
+
+			                  Validación: el servicio técnico puede ver toda la información del control cuando lo desea.
+
+			            \item El estado de las entradas y salidas digitales debe ser reportado al tablero.
+
+			                  Verificación: se verifica en la base de datos del tablero que el estado de las entradas y salidas digitales se encuentra correcto.
+
+			                  Validación: el usuario puede visualizar el estado de las entradas y salidas digitales que manipula.
+			            \item Las temperaturas de la unidad de control, batería y motor deben ser reportadas al tablero.
+
+			                  Verificación: se verifica en la base de datos del tablero que las temperaturas de la unidad de control, batería y motor se encuentran correctas.
+
+			                  Validación: el usuario puede visualizar las temperaturas de la unidad de control, batería y motor en el tablero.
+			            \item El sistema puede ser configurado mediante el usuario a través del tablero.
+
+			                  Verificación: se verifica que la placa de comunicaciones responde a los comandos de configuración.
+
+			                  Validación: el usuario puede configurar el sistema.
+		            \end{enumerate}
+		      \item Entradas digitales
+		            \begin{enumerate}
+			            \item El sistema debe poder recibir señales digitales de los pulsadores y switches del vehículo.
+
+			                  Verificación: se verifica que el sistema responde ante los estímulos de las señales digitales existentes
+
+			                  Validación: el usuario puede puede utilizar las funcionalidades de los pulsadores y switches.
+			            \item Las señales deben ser remapeables por cada vehículo, es decir, disociar el pin físico de la funcionalidad específica.
+
+			                  Verificación: se verifica que las señales digitales se pueden remapear intercambiando las funcionalidades de los botones en un mismo \textit{set up}.
+
+			                  Validación: los distintos vehículos tienen las funcionalidades acordes a sus necesidades y tableros.
+			            \item La activación de las entradas digitales (con tensión o masa) deben ser configurables fuera del tiempo de compilación por personal de la empresa.
+
+			                  Verificación: utilizando un switch se cambia la configuración de las entradas digitales y se verifica que cambia el comportamiento de las mismas. Responde por masa o tensión según la configuración seteada.
+
+			                  Validación: los vehículos pueden ser configurados para responder por masa o tensión fácilmente.
+		            \end{enumerate}
+		      \item BMS
+		            \begin{enumerate}
+			            \item El sistema debe conocer el estado de todas las celdas.
+
+			                  Verificación: se miden las tensiones de las celdas y se verifica que el sistema reporta las mismas tensiones en la base de datos.
+
+			                  Validación: el equipo de servicio técnico puede visualizar las tensiones de las celdas en el tablero en modo servicio técnico.
+			            \item El sistema debe conocer las temperaturas en el interior de todos los módulos de batería.
+
+			                  Verificación: se miden las temperaturas de los módulos de batería y se verifica que el sistema reporta las mismas temperaturas en la base de datos.
+
+			                  Validación: el equipo de servicio técnico puede visualizar las temperaturas de los módulos de batería en el tablero en modo servicio técnico. Además, el usuario puede ver cual es la temperatura máxima medida en la batería desde el tablero.
+			            \item El sistema debe ser capaz de mantener las baterías balanceadas. Un máximo de 50 mV entre celdas.
+
+			                  Verificación: se miden las tensiones de las celdas luego de un ciclo de carga y se verifica que no están desbalanceadas.
+
+			                  Validación: el usuario puede verificar que las baterías están balanceadas durante el ciclo de vida del vehículo.
+			            \item El sistema debe ser capaz de conectarse a distintas configuraciones de baterías según los parámetros del vehículo. Cada vehículo posee distinta cantidad de módulos y distintos modelos de módulos.
+
+			                  Verificación: es posible conectarse a cualquiera de las 3 configuraciones de baterías existentes sin re-compilar el firmware.
+
+			                  Validación: en producción el se puede instalar el tren motor con cualquier configuración de batería sin complicaciones.
+		            \end{enumerate}
+		      \item Control de temperaturas
+		            \begin{enumerate}
+			            \item El sistema debe conocer la temperatura de la unidad de control.
+
+			                  Verificación: se miden las temperaturas de la unidad de control y se verifica que el sistema reporta las mismas temperaturas en la base de datos.
+
+			                  Validación: el equipo de servicio técnico puede visualizar las temperaturas de los componentes la unidad de control en el tablero en modo servicio técnico. Además, el usuario puede ver cual es la temperatura de la unidad de control desde el tablero (un promedio de los componentes).
+			            \item El sistema debe conocer la temperatura de la batería.
+
+			                  Verificación: se miden las temperaturas de la batería y se verifica que el sistema reporta las mismas temperaturas en la base de datos.
+
+			                  Validación: el equipo de servicio técnico puede visualizar las temperaturas de los módulos de batería en el tablero en modo servicio técnico. Además, el usuario puede ver cual es la temperatura máxima medida en la batería desde el tablero.
+			            \item El sistema debe conocer la temperatura del motor.
+
+			                  Verificación: se mide las temperatura del motor y se verifica que el sistema reporta las mismas temperaturas en la base de datos.
+
+			                  Validación: el usuario puede ver cual es la temperatura máxima medida en el motor desde el tablero.
+
+			            \item El sistema debe accionar los actuadores de refrigeración cuando la temperatura de algún componente exceda el 60\% de la temperatura de falla.
+
+			                  Verificación: se verifica que los actuadores de refrigeración se activan cuando la temperatura de algún componente exceda el 60\% de la temperatura de falla. Los sensores se pueden calentar mediante una pistola de calor.
+
+			                  Validación: el usuario utilizar el vehículo y este siempre está dentro de los límites de temperaturas de funcionamiento.
+
+			            \item Las bombas de circulación de líquido deben accionarse siempre que el vehículo se encuentre en marcha o carga.
+
+			                  Verificación: se verifica que las bombas de circulación de liquido se activan cuando el vehículo se encuentre en marcha o carga.
+
+			                  Validación: las temperaturas de los componentes del vehículo se mantienen homogéneas durante la carga y marcha.
+
+		            \end{enumerate}
+		      \item Carga con EVSE
+		            \begin{enumerate}
+			            \item El sistema debe poder conectarse con un EVSE Mennekes.
+
+			                  Verificación: al conectar un EVSE Mennekes se detecta la conexión por parte del sistema.
+
+			                  Validación: el usuario confirma la conexión del EVSE Mennekes mediante un indicador visual (Led).
+			            \item El sistema debe interpretar el limite de corriente que informa el EVSE para configurar el valor de la corriente de carga.
+
+			                  Verificación: se verifica que el sistema carga a la corriente límite de la hoja de datos del equipo.
+
+			                  Validación: el usuario puede cargar el vehículo y no reporta problemas por exceder la corriente limite.
+
+			            \item El sistema debe conocer la temperatura del EVSE.
+
+			                  Verificación: se miden las temperaturas del EVSE y se verifica que el sistema reporta las mismas temperaturas en la base de datos.
+
+			                  Validación: el usuario conoce la temperatura del EVSE.
+
+			            \item El sistema debe disparar la orden de carga a la placa de control cuando el EVSE esté conectado y listo para cargar.
+
+			                  Verificación: se verifica que el sistema dispara la orden de carga a la placa de control cuando el EVSE esté conectado y listo para cargar.
+
+			                  Validación: el usuario puede cargar el vehículo utilizando el EVSE, no reporta intentos de carga espontáneos o inesperados.
+
+			            \item La placa de comunicaciones debe sacar al vehículo de marcha si detecta la conexión de un EVSE.
+
+			                  Verificación: se verifica que la placa de comunicaciones saca al vehículo de marcha cuando detecta la conexión de un EVSE.
+
+			                  Validación: el usuario no puede marchar el vehículo con el EVSE conectado al vehículo.
+		            \end{enumerate}
+		      \item Comunicación con placa de control
+		            \begin{enumerate}
+			            \item La placa de comunicaciones debe indicar a la placa de control el estado objetivo (marcha, carga o reposo).
+
+			                  Verificación: se verifica con un analizador lógico que las ordenes se envían correctamente por la UART.
+
+			                  Validación: las transiciones a marcha, carga y reposo suceden de la forma que pretende el usuario al utilizar el vehículo.
+
+			            \item La placa de comunicaciones debe indicar a la placa de control la dirección de avance (Directa o Reversa).
+
+			                  Verificación: se verifica con un analizador lógico que las ordenes se envían correctamente por la UART.
+
+			                  Validación: el usuario puede utilizar el vehículo para ir en directa o reversa.
+
+			            \item La placa de comunicaciones debe informar la tensión máxima y mínima de las celdas a la placa de control.
+
+			                  Verificación: se verifica con un analizador lógico que se envía el dato adecuado a la placa de control.
+
+			                  Validación: el tren motor sale del estado de marcha si una celda esta en una tensión muy baja (2.9 V).
+
+			            \item La placa de comunicaciones debe ser capaz de recibir datos de la placa de control cada 10 ms.
+
+			                  Verificación: se envían datos por la UART cada 10 ms hacia la placa de comunicaciones y se verifica que puede atenderlas sin comprometer las otras funcionalidades.
+
+			                  Validación: el usuario puede utilizar el vehículo sin problemas con esta tasa de comunicación. Además, puede ver de forma continua los datos generados en la placa de control (visibles para el usuario).
+		            \end{enumerate}
+	      \end{enumerate}
+	\item Requerimientos de robustez
+	      \begin{enumerate}
+		      \item El sistema debe ser capaz de mantener sus comunicaciones en condiciones ruidosas (aceleraciones fuertes o cargas rápidas).
+
+		            Verificación: se verifica que el sistema no se ralentiza en condiciones de ruido confirmando la integridad de todos los datos de la base de datos ante aceleraciones o ciclos de carga.
+
+		            Validación: el usuario ve con fluidez el tablero en todo momento al utilizar el vehículo.
+	      \end{enumerate}
+	\item Requerimientos de testing
+	      \begin{enumerate}
+		      \item El sistema debe ser poseer un modo de servicio técnico.
+
+		            Verificación: se verifica que se puede acceder al modo de servicio técnico desde una PC mediante una conexión USB.
+
+		            Validación: el servicio técnico puede conectarse a la placa mediante la interfaz de servicio técnico.
+
+		      \item El modo de servicio técnico debe permitir probar los actuadores del sistema de forma independiente.
+
+		            Verificación: se verifica que los actuadores del sistema responden correctamente a los comandos de servicio técnico.
+
+		            Validación: se pueden diagnosticar los problemas de los actuadores del sistema o confirmar su correcto funcionamiento.
+		      \item El modo de servicio técnico debe ser vía PC mediante el mismo USB del tablero.
+
+		            Verificación: se verifica que el modo de servicio técnico puede conectarse a la placa mediante la interfaz de servicio técnico.
+
+		            Validación: el personal de servicio técnico puede utilizar el modo de servicio técnico para diagnosticar los problemas de la placa desde su PC.
+		      \item El modo de servicio técnico debe permitir la configuración de los parámetros del sistema.
+
+		            Verificación: se verifica que los parámetros del sistema se pueden configurar desde el modo de servicio técnico cambiándolos y luego consultando su valor.
+
+		            Validación: en producción se puede configurar los parámetros del sistema sin inconvenientes.
+
+
+	      \end{enumerate}
+\end{enumerate}
 \section{15. Procesos de cierre}
 \label{sec:cierre}
 
-\begin{consigna}{red}
-	Establecer las pautas de trabajo para realizar una reunión final de evaluación del proyecto, tal que contemple las siguientes actividades:
+\begin{itemize}
+	\item Análisis de correspondencia con el Plan de Proyecto original.
+	      \begin{itemize}
+		      \item Responsable: \authorname\hspace{1px}.
+		      \item Se analizará cuales fueron los motivos que desviaron a las tareas retrasadas del plan original.
+	      \end{itemize}
+	\item Identificación de las técnicas y procedimientos útiles e inútiles que se emplearon, y los problemas que surgieron y cómo se solucionaron.
+	      \begin{itemize}
+		      \item Responsable: \authorname\hspace{1px}.
+		      \item Se generará documentación durante el avance del proyecto sobre las técnicas y herramientas recurridas. Al finalizar se realizará un compendio con todas las herramientas que resultaron de mayor utilidad para el desarrollo del proyecto.
+	      \end{itemize}
+	\item Acto de agradecimiento a todos los interesados.
+	      \begin{itemize}
+		      \item Responsable: \authorname\hspace{1px}.
+		      \item Se realizará un acto por la plataforma Meet para agradecer a todos los que hicieron posible el desarrollo del proyecto: colaboradores, profesores de la maestría y el equipo de trabajo.
+	      \end{itemize}
+\end{itemize}
 
-	\begin{itemize}
-		\item Pautas de trabajo que se seguirán para analizar si se respetó el Plan de Proyecto original:
-		      - Indicar quién se ocupará de hacer esto y cuál será el procedimiento a aplicar.
-		\item Identificación de las técnicas y procedimientos útiles e inútiles que se emplearon, y los problemas que surgieron y cómo se solucionaron:
-		      - Indicar quién se ocupará de hacer esto y cuál será el procedimiento para dejar registro.
-		\item Indicar quién organizará el acto de agradecimiento a todos los interesados, y en especial al equipo de trabajo y colaboradores:
-		      - Indicar esto y quién financiará los gastos correspondientes.
-	\end{itemize}
-
-\end{consigna}
 
 
 \end{document}
